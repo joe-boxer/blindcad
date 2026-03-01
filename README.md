@@ -276,3 +276,4 @@ Cascade Studio uses:
  - [Playwright](https://playwright.dev/) (Testing)
 
 Cascade Studio is maintained by [Johnathon Selstad @zalo](https://github.com/zalo)
+Trigger workflow
