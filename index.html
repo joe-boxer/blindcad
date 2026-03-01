@@ -3,13 +3,13 @@
     <head>
         <title>Cascade Studio</title>
         <meta charset="utf-8">
-        <meta name="application-name"   content="Cascade Studio">
-        <meta name="description"        content="A Full Live-Scripted CAD Kernel in the Browser">
+        <meta name="application-name"   content="blindcad">
+        <meta name="description"        content="Blindcad TEXT to CAD Kernel in the Browser Draw and Display 3D Objects via a Script">
         <meta name="keywords"           content="SCAD, OpenSCAD, CAD, OpenCascade, Scripting">
-        <meta name="author"             content="Johnathon Selstad">
+        <meta name="author"             content="joe boxer">
         <meta name="viewport"           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="cascade-api"        content="window.CascadeAPI">
         <meta name="theme-color"        content="#1a1a2e">
+        <meta name="cascade-api"        content="window.CascadeAPI">
 
         <!-- Service Worker for offline access (must be first) -->
         <script>
@@ -22,15 +22,6 @@
             }
         </script>
 
-        <!-- Import map for Three.js bare specifier (required by Three.js ESM submodules) -->
-        <script type="importmap">
-        {
-            "imports": {
-                "three": "./node_modules/three/build/three.module.js"
-            }
-        }
-        </script>
-
         <link rel="shortcut icon"    href="./icon/favicon.ico" type="image/x-icon">
         <link rel="manifest"         href="./manifest.webmanifest">
         <link rel="apple-touch-icon" href="./icon/apple-touch-icon.png">
@@ -39,25 +30,24 @@
         <link rel="stylesheet" href="./lib/dockview-core/dockview.css">
         <link rel="stylesheet" href="./css/main.css">
 
-        <!-- Monaco Editor CSS + AMD loader (ESM workers too complex for buildless use) -->
-        <link data-name="vs/editor/editor.main" rel="stylesheet" href="./node_modules/monaco-editor/min/vs/editor/editor.main.css">
+        <!-- Monaco Editor CSS + AMD loader -->
+        <link data-name="vs/editor/editor.main" rel="stylesheet" href="./monaco-editor/min/vs/editor/editor.main.css">
         <script>
-            var require = { paths: { 'vs': 'node_modules/monaco-editor/min/vs' } };
-            // Configure Monaco worker URLs for v0.52+
+            var require = { paths: { 'vs': 'monaco-editor/min/vs' } };
             self.MonacoEnvironment = {
                 getWorkerUrl: function(moduleId, label) {
-                    return './node_modules/monaco-editor/min/vs/base/worker/workerMain.js';
+                    return './monaco-editor/min/vs/base/worker/workerMain.js';
                 }
             };
         </script>
-        <script src="./node_modules/monaco-editor/min/vs/loader.js"></script>
-        <script src="./node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+        <script src="./monaco-editor/min/vs/loader.js"></script>
+        <script src="./monaco-editor/min/vs/editor/editor.main.js"></script>
     </head>
 
-    <body>
-        <h1 hidden></h1>
+    <body data-api="window.CascadeAPI">
+        <h1 class="sr-only">AGENT API</h1>
         <div id="topnav" class="topnav">
-            <a href="https://github.com/zalo/CascadeStudio" class="topnav-brand">Cascade Studio</a>
+            <a href="https://joe-boxer.github.io/blindcad/" class="topnav-brand">blindcad</a>
             <div class="topnav-actions">
                 <a href="#" title="Save Project to .json" onmouseup="window.saveProject();">Save Project</a>
                 <a href="#" title="Load Project from .json" onmouseup="window.loadProject();">Load Project</a>
@@ -77,7 +67,7 @@
             </div>
         </div>
         <div id="appbody">
-            <script type="module" src="./js/MainPage/main.js"></script>
+            <script type="module" src="./main.js"></script>
         </div>
     </body>
 </html>
