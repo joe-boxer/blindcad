@@ -21,8 +21,6 @@
                 });
             }
         </script>
-        
-<script src="cylinders.js"></script>
 
         <link rel="shortcut icon"    href="./icon/favicon.ico" type="image/x-icon">
         <link rel="manifest"         href="./manifest.webmanifest">
@@ -51,20 +49,20 @@
         <div id="topnav" class="topnav">
             <a href="https://joe-boxer.github.io/blindcad/" class="topnav-brand">blindcad</a>
             <div class="topnav-actions">
-                <a href="#" title="Save Project to .json" onmouseup="window.saveProject();">Save Project</a>
-                <a href="#" title="Load Project from .json" onmouseup="window.loadProject();">Load Project</a>
+                <a href="#" title="Save Project to .json" onmouseup="window.saveProject();">save project</a>
+                <a href="#" title="Load Project from .json" onmouseup="window.loadProject();">load</a>
                 <span class="topnav-separator"></span>
-                <a href="#" onmouseup="window.threejsViewport?.saveShapeSTEP();">Save STEP</a>
-                <a href="#" onmouseup="window.threejsViewport?.saveShapeSTL();">Save STL</a>
-                <a href="#" onmouseup="window.threejsViewport?.saveShapeOBJ();">Save OBJ</a>
+                <a href="#" onmouseup="window.threejsViewport?.saveShapeSTEP();">save STEP</a>
+                <a href="#" onmouseup="window.threejsViewport?.saveShapeSTL();">save STL</a>
+                <a href="#" onmouseup="window.threejsViewport?.saveShapeOBJ();">save OBJ</a>
                 <span class="topnav-separator"></span>
-                <label for="files" class="topnav-import" title="Import STEP, IGES, or (ASCII) STL from File">Import STEP/IGES/STL
+                <label for="files" class="topnav-import" title="Import STEP, IGES, or (ASCII) STL from File">import STEP/IGES/STL
                     <input id="files" name="files" type="file" accept=".iges,.step,.igs,.stp,.stl" multiple style="display:none;" oninput="window.loadFiles();"/>
                 </label>
-                <a href="#" title="Clears the external step/iges/stl files stored in the project." onmouseup="window.clearExternalFiles();">Clear Imported</a>
+                <a href="#" title="Clears the external step/iges/stl files stored in the project." onmouseup="window.clearExternalFiles();">clear imported</a>
                 <select id="editorMode" class="topnav-select" title="Editor Language Mode">
-                    <option value="cascadestudio">CascadeStudio JS</option>
-                    <option value="openscad">OpenSCAD</option>
+                    <option value="cascadestudio">cascadestudio JS</option>
+                    <option value="openscad">openSCAD</option>
                 </select>
             </div>
         </div>
