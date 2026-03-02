@@ -4013,20 +4013,40 @@ let wall      = Slider("Wall",        3,  2,  8);
 let filletR   = Slider("Fillet",       6,  1, 15);
 let showLabel = Checkbox("Label",   true);
 
-// --- Pen Holder (Revolve + ChamferEdges) ---
-// Revolve an L-shaped profile around Z to create a hollow cup in one step
-let penR = depth / 4;
-let penH = height * 1.6;
-let penX = width/2 + penR + 3;
-let cupProfile = Polygon([
-  [0, 0, 0], [penR, 0, 0], [penR, 0, penH],
-  [penR - wall, 0, penH], [penR - wall, 0, wall], [0, 0, wall]
-]);
-let holder = Revolve(cupProfile, 360, [0, 0, 1]);
-let chamferEdges = Edges(holder).max([0,0,1]).ofType("Circle").indices();
-holder = ChamferEdges(holder, wall * 0.3, chamferEdges);
-Translate([penX, 0, 0], holder);
+// --- Parametri ---
+let pR   = depth / 4;
+let pH   = height * 2.0;
+let pX   = width/2 + pR + 3;
+let off  = 0.5; // Spazio tra i due cilindri
+let fR   = 0.2; // Raggio richiesto per i raccordi
 
+// Profilo unico: disegna la sezione di entrambi i cilindri alla stessa altezza
+let complexProfile = Polygon([
+  // 1. Cilindro Esterno (Hollow Cup)
+  [0, 0, 0], 
+  [pR, 0, 0], 
+  [pR, 0, pH],             // Cima esterna
+  [pR - wall, 0, pH],      // Bordo superiore esterno
+  [pR - wall, 0, wall],    // Fondo interno
+  
+  // 2. Passaggio al Cilindro Interno (Base)
+  [pR - wall - off, 0, wall], 
+  
+  // 3. Cilindro Interno (Solid Core)
+  [pR - wall - off, 0, pH], // Cima interna (stessa altezza pH)
+  [0, 0, pH]                // Chiusura al centro
+]);
+
+// Rivoluzione unica
+let final = Revolve(complexProfile, 360, [0, 0, 1]);
+
+// Applichiamo il Fillet di 0.2 sui bordi circolari in cima
+// max([0,0,1]) selezionerà i cerchi alla quota Z = pH
+let topEdges = Edges(final).max([0,0,1]).ofType("Circle").indices();
+final = FilletEdges(final, fR, topEdges);
+
+// Spostamento finale
+Translate([pX, 0, 0], final);
 
 `;var N_=new zr;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",()=>N_.start()):N_.start();
 /*! Bundled license information:
