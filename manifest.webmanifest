@@ -3,7 +3,7 @@
   "short_name": "blindcad",
   "start_url": ".",
   "display": "standalone",
-  "description": "A fully integrated Blind CAD Kernel on the browser.",
+  "description": "tex to cad.",
   "related_applications": [{
     "platform": "github",
     "url": "https://joe-boxer.github.io/blindcad/"
