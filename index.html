@@ -11,17 +11,6 @@
         <meta name="theme-color"        content="#1a1a2e">
         <meta name="cascade-api"        content="window.CascadeAPI">
 
-        <!-- Service Worker for offline access (must be first) -->
-        <script>
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-                    registration.update();
-                }, function() {
-                    console.log('Could not register Cascade Studio for offline use!');
-                });
-            }
-        </script>
-
         <link rel="shortcut icon"    href="./icon/favicon.ico" type="image/x-icon">
         <link rel="manifest"         href="./manifest.webmanifest">
         <link rel="apple-touch-icon" href="./icon/apple-touch-icon.png">
@@ -49,12 +38,12 @@
         <div id="topnav" class="topnav">
             <a href="https://joe-boxer.github.io/blindcad/" class="topnav-brand">blindcad</a>
             <div class="topnav-actions">
-                <a href="#" title="Save Project to .json" onmouseup="window.saveProject();">save project</a>
-                <a href="#" title="Load Project from .json" onmouseup="window.loadProject();">load</a>
+            	<a href="#" title="Load Project from .json" onmouseup="window.loadProject();">load</a>
+            	<a href="#" title="Save Project to .json" onmouseup="window.saveProject();">save project</a>
+                
                 <span class="topnav-separator"></span>
                 <a href="#" onmouseup="window.threejsViewport?.saveShapeSTEP();">save STEP</a>
-                <a href="#" onmouseup="window.threejsViewport?.saveShapeSTL();">save STL</a>
-                <a href="#" onmouseup="window.threejsViewport?.saveShapeOBJ();">save OBJ</a>
+
                 <span class="topnav-separator"></span>
                 <label for="files" class="topnav-import" title="Import STEP, IGES, or (ASCII) STL from File">import STEP/IGES/STL
                     <input id="files" name="files" type="file" accept=".iges,.step,.igs,.stp,.stl" multiple style="display:none;" oninput="window.loadFiles();"/>
